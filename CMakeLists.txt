@@ -35,3 +35,12 @@ target_link_libraries(${PROJECT_NAME} ${aruco_LIBS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
 target_link_libraries(${PROJECT_NAME} glm)
+
+
+CONFIGURE_FILE(gem2.cmake.in "${PROJECT_BINARY_DIR}/gem2Config.cmake" @ONLY)
+
+INSTALL(TARGETS gem2 DESTINATION lib RUNTIME DESTINATION bin)
+INSTALL(DIRECTORY "${PROJECT_SOURCE_DIR}/include/" DESTINATION include PATTERN "*.in" EXCLUDE)
+#INSTALL(DIRECTORY "${PROJECT_BINARY_DIR}/${PROJECT_NAME}" DESTINATION include)
+INSTALL(FILES "${PROJECT_BINARY_DIR}/gem2Config.cmake" DESTINATION lib/cmake/gem2/)
+#INSTALL(FILES "${PROJECT_BINARY_DIR}/gem2ConfigVersion.cmake" DESTINATION lib/cmake/gem2/)
